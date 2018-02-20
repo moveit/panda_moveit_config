@@ -7,4 +7,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Mike Lautman
     author_email: mike@picknik.ai
-    generated_timestamp: 1517966279
+    generated_timestamp: 1519152260
