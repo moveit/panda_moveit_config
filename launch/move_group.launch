@@ -2,6 +2,8 @@
 
   <include file="$(find panda_moveit_config)/launch/planning_context.launch" />
 
+  <arg name="planner" default="ompl" />
+
   <!-- GDB Debug Option -->
   <arg name="debug" default="false" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
@@ -22,7 +24,7 @@
 
   <!-- Planning Functionality -->
   <include ns="move_group" file="$(find panda_moveit_config)/launch/planning_pipeline.launch.xml">
-    <arg name="pipeline" value="ompl" />
+    <arg name="pipeline" value="$(arg planner)" />
   </include>
 
   <!-- Trajectory Execution Functionality -->
