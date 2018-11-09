@@ -1,5 +1,4 @@
 <package>
-
   <name>panda_moveit_config</name>
   <version>0.7.0</version>
   <description>
@@ -16,6 +15,9 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <build_depend>franka_description</build_depend>
+
+  <run_depend>franka_description</run_depend>
   <run_depend>moveit_ros_move_group</run_depend>
   <run_depend>moveit_fake_controller_manager</run_depend>
   <run_depend>moveit_kinematics</run_depend>
@@ -25,10 +27,7 @@
   <run_depend>robot_state_publisher</run_depend>
   <run_depend>xacro</run_depend>
   <run_depend>topic_tools</run_depend>
-  <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment. Commented the dependency until this works. -->
+  <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment.
+       Commented the dependency until this works. -->
   <!-- <run_depend>warehouse_ros_mongo</run_depend> -->
-  <build_depend>franka_description</build_depend>
-  <run_depend>franka_description</run_depend>
-
-
 </package>
