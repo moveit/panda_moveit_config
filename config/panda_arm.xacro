@@ -40,7 +40,10 @@
     <disable_collisions link1="panda_link4" link2="panda_link5" reason="Adjacent" />
     <disable_collisions link1="panda_link4" link2="panda_link6" reason="Never" />
     <disable_collisions link1="panda_link4" link2="panda_link7" reason="Never" />
+    <disable_collisions link1="panda_link4" link2="panda_link8" reason="Never" />
     <disable_collisions link1="panda_link5" link2="panda_link6" reason="Adjacent" />
+    <disable_collisions link1="panda_link5" link2="panda_link7" reason="Default" />
     <disable_collisions link1="panda_link6" link2="panda_link7" reason="Adjacent" />
+    <disable_collisions link1="panda_link7" link2="panda_link8" reason="Adjacent" />
   </xacro:macro>
 </robot>
