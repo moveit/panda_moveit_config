@@ -28,7 +28,7 @@
     <joint name="panda_joint7" value="0.785" />
   </group_state>
   <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-  <end_effector name="hand" parent_link="panda_link8" group="hand" parent_group="panda_arm_hand" />
+  <end_effector name="hand" parent_link="panda_link8" group="hand" parent_group="panda_arm" />
   <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
   <disable_collisions link1="panda_hand" link2="panda_link3" reason="Never" />
   <disable_collisions link1="panda_hand" link2="panda_link4" reason="Never" />
