@@ -25,7 +25,7 @@
   </include>
 
   <!-- If needed, broadcast static tf for robot root -->
-
+  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_1" args="0 0 0 0 0 0 1 world panda_link0" />
 
   <!-- We do not have a robot connected, so publish fake joint states -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
