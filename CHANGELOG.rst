@@ -2,6 +2,17 @@
 Changelog for package panda_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* removing unused attempts param (`#26 <https://github.com/ros-planning/panda_moveit_config/issues/26>`_)
+* virtual joint quaternion->rpy
+* fixing the virtual joint issue by adding the broadcaster (`#23 <https://github.com/ros-planning/panda_moveit_config/issues/23>`_)
+* changing the end effector parent group (`#20 <https://github.com/ros-planning/panda_moveit_config/issues/20>`_)
+  * changing the end effector parent group
+  * changing virtual joint to floating for use with moveit_visual_tools
+* Fix incorrect SRDF path (`#19 <https://github.com/ros-planning/panda_moveit_config/issues/19>`_)
+* Contributors: Dave Coleman, Mike Lautman
+
 0.7.1 (2018-12-10)
 ------------------
 * CHOMP: remove "Hybrid" collision detector (`#16 <https://github.com/ros-planning/panda_moveit_config/pull/16>`_)
