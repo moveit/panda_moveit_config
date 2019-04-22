@@ -2,8 +2,8 @@
 Changelog for package panda_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.2 (2019-04-22)
+------------------
 * removing unused attempts param (`#26 <https://github.com/ros-planning/panda_moveit_config/issues/26>`_)
 * virtual joint quaternion->rpy
 * fixing the virtual joint issue by adding the broadcaster (`#23 <https://github.com/ros-planning/panda_moveit_config/issues/23>`_)
