@@ -9,6 +9,8 @@
   <arg name="debug" default="false" />
   <arg name="pipeline" default="ompl" />
 
+  <arg name="planner" default="ompl" />
+
   <!--
   By default, hide joint_state_publisher's GUI
 
