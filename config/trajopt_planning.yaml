@@ -20,7 +20,7 @@ problem_info:
     dt_lower_lim: 100.0        # The lower limit of 1/dt values allowed in the optimization
     start_fixed: true          # if true, start pose is the current pose at timestep = 0
     # if false, the start pose is the one given by req.start_state
-    use_time: flase            # if false, it means the timestep is unit, meaning x1-x0 is the velocity for example
+    use_time: false            # if false, it means the timestep is unit, meaning x1-x0 is the velocity for example
     # if true, then cost_infos ro cnt_infos should have TT_USE_TIME for their term_type
     convex_solver: 1           # which convex solver to use
     #  1 = AUTO_SOLVER,  2 = BPMPD, 3 = OSQP, 4 = QPOASES, 5 = GUROBI
@@ -47,4 +47,12 @@ joint_pos_term_info:
     name: goal_pos
     first_timestep: 19
     last_timestep: 19
+    term_type: 2
+  goal_tmp:               # If the constraint from request does not have any name, for example when using MotionPlanning Display in Rviz,
+  # goal_tmp is assigned as the name of the constraint.
+  # In this case: start_fixed = false and start_pos should be applied at timestep 0
+  # OR: start_fixed = true and start_pos can be applies at any timestep
+    name: goal_tmp
+    first_timestep: 19  # n_steps - 1
+    last_timestep: 19   # n_steps - 1
     term_type: 2

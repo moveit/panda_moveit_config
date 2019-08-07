@@ -7,7 +7,7 @@
 
   <!-- By default, we are not in debug mode -->
   <arg name="debug" default="false" />
-  <arg name="planner" default="ompl" />
+  <arg name="pipeline" default="ompl" />
 
   <!--
   By default, hide joint_state_publisher's GUI
@@ -44,7 +44,7 @@
     <arg name="fake_execution" value="true"/>
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
-    <arg name="planner" value="$(arg planner)"  />
+    <arg name="pipeline" value="$(arg pipeline)"  />
   </include>
 
   <!-- Run Rviz -->

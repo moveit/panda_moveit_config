@@ -1,7 +1,7 @@
 <launch>
 
   <!-- This argument must specify the list of .cfg files to process for benchmarking -->
-  <arg name="cfg" />
+  <arg name="trajopt_config" />
 
   <!-- Load URDF -->
   <include file="$(find panda_moveit_config)/launch/planning_context.launch">
@@ -14,7 +14,8 @@
   </include>
 
   <!-- Start Benchmark Executable -->
-  <node name="$(anon moveit_benchmark)" pkg="moveit_ros_benchmarks" type="moveit_run_benchmark" args="$(arg cfg) --benchmark-planners" respawn="false" output="screen">
+  <node name="$(anon moveit_benchmark)" pkg="moveit_ros_benchmarks" type="moveit_run_benchmark"
+        args="$(arg trajopt_config) --benchmark-planners" respawn="false" output="screen">
     <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
     <rosparam command="load" file="$(find panda_moveit_config)/config/trajopt_planning.yaml"/>
   </node>
