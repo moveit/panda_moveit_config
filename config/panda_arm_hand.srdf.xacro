@@ -27,7 +27,7 @@
     <joint name="panda_joint6" value="1.571" />
     <joint name="panda_joint7" value="0.785" />
   </group_state>
-  <group_state name="home" group="panda_arm_hand">
+  <group_state name="extended" group="panda_arm_hand">
     <joint name="panda_joint1" value="0" />
     <joint name="panda_joint2" value="0" />
     <joint name="panda_joint3" value="0" />
