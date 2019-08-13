@@ -7,12 +7,7 @@
 
   <!-- By default, we are not in debug mode -->
   <arg name="debug" default="false" />
-<<<<<<< HEAD
   <arg name="pipeline" default="ompl" />
-
-=======
->>>>>>> Added emptyplan_planning.yaml so it can be used for new planners. It is an empty file.
-  <arg name="planner" default="ompl" />
 
   <!--
   By default, hide joint_state_publisher's GUI
@@ -49,11 +44,7 @@
     <arg name="fake_execution" value="true"/>
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
-<<<<<<< HEAD
     <arg name="pipeline" value="$(arg pipeline)"  />
-=======
-    <arg name="planner" value="$(arg planner)"  />
->>>>>>> Added emptyplan_planning.yaml so it can be used for new planners. It is an empty file.
   </include>
 
   <!-- Run Rviz -->
