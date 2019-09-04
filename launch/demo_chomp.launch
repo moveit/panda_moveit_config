@@ -43,7 +43,7 @@
     <arg name="fake_execution" value="true"/>
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
-    <arg name="planner" value="chomp" />
+    <arg name="pipeline" value="chomp" />
   </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
