@@ -1,0 +1,23 @@
+# joint_weights.yaml allows to set the the scaling factors for the distance metrics of the manipulators 
+# Specific joint properties can be changed with the keys [weight]
+
+
+joint_weights:
+  panda_joint1:
+    weight: 0.5
+  panda_joint2:
+    weight: 0.5
+  panda_joint3:
+    weight: 0.5
+  panda_joint4:
+    weight: 0.5
+  panda_joint5:
+    weight: 0.5
+  panda_joint6:
+    weight: 0.5
+  panda_joint7:
+    weight: 0.5
+  panda_finger_joint1:
+    weight: 0.5
+  panda_finger_joint2:
+    weight: 0.5
