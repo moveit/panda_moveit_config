@@ -2,8 +2,8 @@
 Changelog for package panda_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.7.3 (2019-11-21)
+------------------
 * cleanup warehouse settings (`#43 <https://github.com/ros-planning/panda_moveit_config/issues/43>`_)
 * demo_chomp.launch: Rename arg planner to pipeline (`#42 <https://github.com/ros-planning/panda_moveit_config/issues/42>`_)
   Fixup of 0b7ac4e6ea147003fd01d0b51723452ff320a5ea (`#29 <https://github.com/ros-planning/panda_moveit_config/issues/29>`_)
