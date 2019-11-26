@@ -26,6 +26,8 @@
     <joint name="panda_joint5" value="0" />
     <joint name="panda_joint6" value="1.571" />
     <joint name="panda_joint7" value="0.785" />
+    <joint name="panda_finger_joint1" value="0" />
+    <joint name="panda_finger_joint2" value="0" />
   </group_state>
   <group_state name="extended" group="panda_arm_hand">
     <joint name="panda_joint1" value="0" />
@@ -35,6 +37,8 @@
     <joint name="panda_joint5" value="0" />
     <joint name="panda_joint6" value="0" />
     <joint name="panda_joint7" value="0.785" />
+    <joint name="panda_finger_joint1" value="0" />
+    <joint name="panda_finger_joint2" value="0" />
   </group_state>
   <group_state name="open" group="hand">
     <joint name="panda_finger_joint1" value="0.035" />
