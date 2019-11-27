@@ -19,6 +19,15 @@
       <joint name="panda_joint6" value="1.571" />
       <joint name="panda_joint7" value="0.785" />
     </group_state>
+    <group_state name="extended" group="panda_arm">
+      <joint name="panda_joint1" value="0" />
+      <joint name="panda_joint2" value="0" />
+      <joint name="panda_joint3" value="0" />
+      <joint name="panda_joint4" value="0" />
+      <joint name="panda_joint5" value="0" />
+      <joint name="panda_joint6" value="0" />
+      <joint name="panda_joint7" value="0.785" />
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="floating" parent_frame="world" child_link="panda_link0" />
