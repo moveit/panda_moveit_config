@@ -27,6 +27,23 @@
     <joint name="panda_joint6" value="1.571" />
     <joint name="panda_joint7" value="0.785" />
   </group_state>
+  <group_state name="extended" group="panda_arm_hand">
+    <joint name="panda_joint1" value="0" />
+    <joint name="panda_joint2" value="0" />
+    <joint name="panda_joint3" value="0" />
+    <joint name="panda_joint4" value="0" />
+    <joint name="panda_joint5" value="0" />
+    <joint name="panda_joint6" value="0" />
+    <joint name="panda_joint7" value="0.785" />
+  </group_state>
+  <group_state name="open" group="hand">
+    <joint name="panda_finger_joint1" value="0.035" />
+    <joint name="panda_finger_joint2" value="0.035" />
+  </group_state>
+  <group_state name="close" group="hand">
+    <joint name="panda_finger_joint1" value="0" />
+    <joint name="panda_finger_joint2" value="0" />
+  </group_state>
   <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
   <end_effector name="hand" parent_link="panda_link8" group="hand" parent_group="panda_arm" />
   <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
