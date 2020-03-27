@@ -2,6 +2,15 @@
 Changelog for package panda_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.4 (2020-03-27)
+------------------
+* [fix] Add time parameterization in stomp_planning_pipeline.launch (`#59 <https://github.com/ros-planning/panda_moveit_config/issues/59>`_)
+* [fix] add joint_state_publisher_gui to package.xml (`#54 <https://github.com/ros-planning/panda_moveit_config/issues/54>`_)
+* [fix] Add static transform publisher (`#51 <https://github.com/ros-planning/panda_moveit_config/issues/51>`_)
+* [maintanence] demo_chomp.launch: reuse demo.launch (`#57 <https://github.com/ros-planning/panda_moveit_config/issues/57>`_)
+* [maintanence] Define 'extended' state for 'panda_arm' group (`#47 <https://github.com/ros-planning/panda_moveit_config/issues/47>`_)
+* Contributors: Mike Lautman, Robert Haschke, Sebastian Wallkötter, jsbyysheng
+
 0.7.3 (2019-11-21)
 ------------------
 * cleanup warehouse settings (`#43 <https://github.com/ros-planning/panda_moveit_config/issues/43>`_)
