@@ -17,6 +17,7 @@
   It also provides a GUI to move the simulated robot around "manually".
   This corresponds to moving around the real robot without the use of MoveIt.
   -->
+  <arg name="use_rviz" default="true" />
   <arg name="rviz_tutorial" default="false" />
   <arg name="use_gui" default="false" />
 
@@ -48,7 +49,7 @@
   </include>
 
   <!-- Run Rviz -->
-  <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch">
+  <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg use_rviz)">
     <arg name="rviz_tutorial" value="$(arg rviz_tutorial)"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
