@@ -1,0 +1,36 @@
+sensors:
+  - sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+    point_cloud_topic: /cam_1/depth/color/points_processed
+    max_range: 3.4
+    point_subsample: 16
+    padding_offset: 0.15
+    padding_scale: 1
+    max_update_rate: 30.0
+    filtered_cloud_topic: filtered_cloud
+  - sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+    point_cloud_topic: /cam_2/depth/color/points_processed
+    max_range: 3.4
+    point_subsample: 16
+    padding_offset: 0.15
+    padding_scale: 1
+    max_update_rate: 30.0
+    filtered_cloud_topic: filtered_cloud
+
+# Original Values
+# sensors:
+#   - sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+#     point_cloud_topic: /cam_1/depth/color/points
+#     max_range: 4
+#     point_subsample: 1
+#     padding_offset: 0.1
+#     padding_scale: 1.0
+#     max_update_rate: 1.0
+#     filtered_cloud_topic: filtered_cloud
+#   - sensor_plugin: occupancy_map_monitor/PointCloudOctomapUpdater
+#     point_cloud_topic: /cam_2/depth/color/points
+#     max_range: 4
+#     point_subsample: 1
+#     padding_offset: 0.1
+#     padding_scale: 1.0
+#     max_update_rate: 1.0
+#     filtered_cloud_topic: filtered_cloud
