@@ -11,8 +11,7 @@ controller_list:
   - name: fake_hand_controller
     joints:
       - panda_finger_joint1
-      - panda_finger_joint2
-initial:
+initial:  # Define initial robot poses.
   - group: panda_arm
     pose: ready
   - group: hand

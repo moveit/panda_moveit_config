@@ -2,9 +2,10 @@ moveit_setup_assistant_config:
   URDF:
     package: franka_description
     relative_path: robots/panda_arm_hand.urdf.xacro
+    xacro_args: ""
   SRDF:
-    relative_path: config/panda_arm.srdf.xacro
+    relative_path: config/panda.srdf
   CONFIG:
-    author_name: Mike Lautman
-    author_email: mike@picknik.ai
-    generated_timestamp: 1519152260
+    author_name: Tyler Weaver
+    author_email: tyler@picknik.ai
+    generated_timestamp: 1601757998

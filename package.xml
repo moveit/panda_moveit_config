@@ -1,11 +1,12 @@
 <package>
+
   <name>panda_moveit_config</name>
   <version>0.7.4</version>
   <description>
-     An automatically generated package with all the configuration and launch files for using the panda with the MoveIt! Motion Planning Framework
+     An automatically generated package with all the configuration and launch files for using the panda with the MoveIt Motion Planning Framework
   </description>
-  <author email="mike@picknik.ai">Mike Lautman</author>
-  <maintainer email="mike@picknik.ai">Mike Lautman</maintainer>
+  <author email="tyler@picknik.ai">Tyler Weaver</author>
+  <maintainer email="tyler@picknik.ai">Tyler Weaver</maintainer>
 
   <license>BSD</license>
 
@@ -15,18 +16,20 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <run_depend>franka_description</run_depend>
   <run_depend>moveit_ros_move_group</run_depend>
   <run_depend>moveit_fake_controller_manager</run_depend>
   <run_depend>moveit_kinematics</run_depend>
   <run_depend>moveit_planners_ompl</run_depend>
   <run_depend>moveit_ros_visualization</run_depend>
+  <run_depend>moveit_setup_assistant</run_depend>
   <run_depend>joint_state_publisher</run_depend>
   <run_depend>joint_state_publisher_gui</run_depend>
   <run_depend>robot_state_publisher</run_depend>
+  <run_depend>tf2_ros</run_depend>
   <run_depend>xacro</run_depend>
-  <run_depend>topic_tools</run_depend>
-  <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment.
-       Commented the dependency until this works. -->
+  <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment. Commented the dependency until this works. -->
   <!-- <run_depend>warehouse_ros_mongo</run_depend> -->
+    <run_depend>franka_description</run_depend>
+
+
 </package>
