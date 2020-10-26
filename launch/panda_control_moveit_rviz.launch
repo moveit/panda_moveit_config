@@ -2,6 +2,7 @@
 <launch>
   <!-- If needed, broadcast static tf for robot root -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_1" args="0 0 0 0 0 0 world panda_link0" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_2" args="0.0512008 -0.0094141 0.0417049 0.7170629534293602 -0.025008923209280443 0.6965198428440764 0.007441982500551558 /panda_hand /camera_link" />
 
   <arg name="robot_ip" />
   <arg name="load_gripper" default="true" />
