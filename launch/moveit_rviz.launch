@@ -4,13 +4,31 @@
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
 
+  <!-- In case we wish to pass custom command-line args to rviz, put these in the rviz_command_args argument -->
+  <!-- If command_args is empty, standard behaviour -->
+  <arg name="rviz_command_args" default="''" />
   <arg name="rviz_tutorial" default="false" />
-  <arg unless="$(arg rviz_tutorial)" name="command_args" value="-d $(find panda_moveit_config)/launch/moveit.rviz" />
-  <arg     if="$(arg rviz_tutorial)" name="command_args" value="-d $(find panda_moveit_config)/launch/moveit_empty.rviz" />
 
-  <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
+  <group if="$(eval rviz_command_args == '')">
+    <arg unless="$(arg rviz_tutorial)" name="command_args" value="-d $(find panda_moveit_config)/launch/moveit.rviz" />
+    <arg     if="$(arg rviz_tutorial)" name="command_args" value="-d $(find panda_moveit_config)/launch/moveit_empty.rviz" />
+    <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
+	    args="$(arg command_args)" output="screen">
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+    </node>
+  </group>
+
+  <group unless="$(eval rviz_command_args == '')">
+    <arg name="command_args" value="$(arg rviz_command_args)" />
+    <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
+	    args="$(arg command_args)" output="screen">
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+    </node>
+  </group>
+
+  <!-- <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
 	args="$(arg command_args)" output="screen">
     <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
-  </node>
+  </node> -->
 
 </launch>
