@@ -8,4 +8,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Tyler Weaver
     author_email: tyler@picknik.ai
-    generated_timestamp: 1601757998
+    generated_timestamp: 1608134967
