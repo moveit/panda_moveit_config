@@ -33,7 +33,7 @@
         <joint name="panda_joint4" value="-2.356" />
         <joint name="panda_joint5" value="0" />
         <joint name="panda_joint6" value="1.571" />
-        <joint name="panda_joint7" value="-0.7855" />
+        <joint name="panda_joint7" value="0.785" />
     </group_state>
     <group_state name="extended" group="panda_arm">
         <joint name="panda_joint1" value="0" />
@@ -79,6 +79,8 @@
     <disable_collisions link1="panda_link4" link2="panda_link8" reason="Never" />
     <disable_collisions link1="panda_link5" link2="panda_link6" reason="Adjacent" />
     <disable_collisions link1="panda_link5" link2="panda_link7" reason="Default" />
+    <disable_collisions link1="panda_link5" link2="panda_link8" reason="Default" />
     <disable_collisions link1="panda_link6" link2="panda_link7" reason="Adjacent" />
+    <disable_collisions link1="panda_link6" link2="panda_link8" reason="Default" />
     <disable_collisions link1="panda_link7" link2="panda_link8" reason="Adjacent" />
 </robot>
