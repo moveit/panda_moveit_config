@@ -1,5 +1,6 @@
 <launch>
   <arg name="load_gripper" default="true" />
+  <arg name="moveit_use_bio_ik" default="false"/>
 
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
   <arg name="load_robot_description" default="false"/>
@@ -22,7 +23,8 @@
 
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
-    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml" unless="$(arg moveit_use_bio_ik)"/>
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics_bio_ik.yaml" if="$(arg moveit_use_bio_ik)"/>
   </group>
 
 </launch>

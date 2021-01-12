@@ -1,10 +1,12 @@
 <?xml version="1.0" ?>
 <launch>
   <arg name="load_gripper" default="true" />
+  <arg name="moveit_use_bio_ik" default="false" />
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="position_joint_trajectory_controller"/>
 
   <include file="$(find panda_moveit_config)/launch/move_group.launch">
     <arg name="load_gripper" value="$(arg load_gripper)" />
+    <arg name="moveit_use_bio_ik" value="$(arg moveit_use_bio_ik)" />
   </include>
 </launch>
