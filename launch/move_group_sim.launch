@@ -1,6 +1,10 @@
 <launch>
 
-  <include file="$(find panda_moveit_config)/launch/planning_context.launch"/>
+  <arg name="moveit_use_bio_ik" default="false"/>
+
+  <include file="$(find panda_moveit_config)/launch/planning_context.launch">
+    <arg name="moveit_use_bio_ik" value="$(arg moveit_use_bio_ik)" />
+  </include>
 
   <arg name="pipeline" default="ompl" />
 

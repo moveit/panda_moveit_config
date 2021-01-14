@@ -4,6 +4,8 @@
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
   <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
 
+  <arg name="moveit_use_bio_ik" default="false" />
+
   <!-- In case we wish to pass custom command-line args to rviz, put these in the rviz_command_args argument -->
   <!-- If command_args is empty, standard behaviour -->
   <arg name="rviz_command_args" default="''" />
@@ -14,7 +16,8 @@
     <arg     if="$(arg rviz_tutorial)" name="command_args" value="-d $(find panda_moveit_config)/launch/moveit_empty.rviz" />
     <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
 	    args="$(arg command_args)" output="screen">
-    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml" unless="$(arg moveit_use_bio_ik)"/>
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics_bio_ik.yaml" if="$(arg moveit_use_bio_ik)"/>
     </node>
   </group>
 
@@ -22,7 +25,8 @@
     <arg name="command_args" value="$(arg rviz_command_args)" />
     <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
 	    args="$(arg command_args)" output="screen">
-    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml" unless="$(arg moveit_use_bio_ik)"/>
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics_bio_ik.yaml" if="$(arg moveit_use_bio_ik)"/>
     </node>
   </group>
 
