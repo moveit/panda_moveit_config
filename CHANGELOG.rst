@@ -2,6 +2,23 @@
 Changelog for package panda_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.5 (2021-03-25)
+------------------
+* Update SRDF for collision model (`#35 <https://github.com/ros-planning/panda_moveit_config/issues/35>`_)
+  franka_description got updated with a more coarse collision model [1] matching the internal
+  self-collision detection, so the SRDF needs to be adapted.
+  Disable collision checking between panda_link6 and panda_link8 which collide in the default pose.
+  Tested with example controllers.
+  Closes `#18 <https://github.com/ros-planning/panda_moveit_config/issues/18>`_. Resolves `ros-planning/moveit#1210 <https://github.com/ros-planning/moveit/issues/1210>`_, resolves `frankaemika/franka_ros#39 <https://github.com/frankaemika/franka_ros/issues/39>`_.
+  [1] https://github.com/frankaemika/franka_ros/commit/e52c03a23aa18c6532e40f9bf4927dedfc0c596a
+* Fix ordering of planning adapters (`#69 <https://github.com/ros-planning/panda_moveit_config/issues/69>`_)
+  As explained in https://github.com/ros-planning/moveit/pull/2053
+  AddTimeParameterization should be at the begining of the list.
+* Add tranposrt joint state (`#67 <https://github.com/ros-planning/panda_moveit_config/issues/67>`_)
+  Co-authored-by: Libor Wagner <libor.wagner@cvut.cz>
+* Bump required cmake version (`#61 <https://github.com/ros-planning/panda_moveit_config/issues/61>`_)
+* Contributors: Florian Walch, Libor Wagner, Michael Görner, tnaka
+
 0.7.4 (2020-03-27)
 ------------------
 * [fix] Add time parameterization in stomp_planning_pipeline.launch (`#59 <https://github.com/ros-planning/panda_moveit_config/issues/59>`_)
