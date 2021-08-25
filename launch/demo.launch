@@ -25,6 +25,8 @@
   <!-- By default, hide joint_state_publisher's GUI in 'fake' controller_manager mode -->
   <arg name="use_gui" default="false" />
   <arg name="use_rviz" default="true" />
+  <!-- Use rviz config for MoveIt tutorial -->
+  <arg name="rviz_tutorial" default="false" />
 
   <!-- If needed, broadcast static tf for robot root -->
   <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 world panda_link0" />
@@ -61,6 +63,7 @@
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include file="$(dirname)/moveit_rviz.launch" if="$(arg use_rviz)">
+    <arg name="rviz_tutorial" value="$(arg rviz_tutorial)"/>
     <arg name="rviz_config" value="$(dirname)/moveit.rviz"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
