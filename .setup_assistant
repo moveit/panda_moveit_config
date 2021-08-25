@@ -4,7 +4,7 @@ moveit_setup_assistant_config:
     relative_path: robots/panda_arm.urdf.xacro
     xacro_args: hand:=true
   SRDF:
-    relative_path: config/panda.srdf
+    relative_path: config/panda.srdf.xacro
   CONFIG:
     author_name: MoveIt maintainer team
     author_email: moveit_releasers@googlegroups.com
