@@ -58,5 +58,11 @@
         <disable_collisions link1="panda_link5" link2="panda_link7" reason="Default"/>
         <disable_collisions link1="panda_link6" link2="panda_link7" reason="Adjacent"/>
         <disable_collisions link1="panda_link7" link2="panda_link8" reason="Adjacent"/>
+        <!-- Fix self-collisions between too coarse collision geometries provided by franka_description
+             See https://github.com/ros-planning/panda_moveit_config/issues/72#issuecomment-768472329
+                 https://github.com/ros-planning/panda_moveit_config/pull/35#pullrequestreview-390715967
+        -->
+        <disable_collisions link1="panda_link5" link2="panda_link8" reason="Default" />
+        <disable_collisions link1="panda_link6" link2="panda_link8" reason="Default"/>
     </xacro:macro>
 </robot>
