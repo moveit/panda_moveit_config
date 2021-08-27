@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<!--
+  Used to control a real robot using moveit
+-->
+<launch>
+  <arg name="load_gripper" default="true" />
+  <arg name="launch_rviz" default="true" />
+  <!--
+    By default we load the franka controllers.Disable this option if the controllers are
+    running on a seperate workstation
+  -->
+  <arg name="launch_franka_control" default="true" />
+  <group if="$(arg launch_franka_control)">
+    <arg name="robot_ip" />
+  </group>
+
+  <!-- If needed, broadcast static tf for robot root -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="virtual_joint_broadcaster_1" args="0 0 0 0 0 0 world panda_link0" />
+
+  <include if="$(arg launch_franka_control)" file="$(find franka_control)/launch/franka_control.launch">
+    <arg name="robot_ip" value="$(arg robot_ip)" />
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+  </include>
+
+  <include file="$(find panda_moveit_config)/launch/panda_moveit.launch">
+    <arg name="load_gripper" value="$(arg load_gripper)" />
+  </include>
+
+  <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg launch_rviz)"/>
+</launch>
