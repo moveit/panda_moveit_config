@@ -1,8 +1,7 @@
 moveit_setup_assistant_config:
   URDF:
     package: franka_description
-    relative_path: robots/panda_arm_hand.urdf.xacro
-    xacro_args: ""
+    relative_path: robots/panda_arm.urdf.xacro
   SRDF:
     relative_path: config/panda.srdf
   CONFIG:
