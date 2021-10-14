@@ -15,7 +15,6 @@
 
   <!-- Start Benchmark Executable -->
   <node name="$(anon moveit_benchmark)" pkg="moveit_ros_benchmarks" type="moveit_run_benchmark" args="$(arg cfg) --benchmark-planners" respawn="false" output="screen">
-    <rosparam command="load" file="$(find moveit_resources_panda_moveit_config)/config/kinematics.yaml"/>
     <rosparam command="load" file="$(find moveit_resources_panda_moveit_config)/config/trajopt_planning.yaml"/>
   </node>
 
