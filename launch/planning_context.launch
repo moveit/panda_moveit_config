@@ -1,6 +1,7 @@
 <launch>
   <arg name="load_gripper" default="true" />
   <arg name="moveit_use_bio_ik" default="false"/>
+  <arg name="use_franka_gazebo" default="false"/>
 
   <!-- By default we do not overwrite the URDF. Change the following to true to change the default behavior -->
   <arg name="load_robot_description" default="false"/>

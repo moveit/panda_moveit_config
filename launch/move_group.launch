@@ -2,10 +2,12 @@
 
   <arg name="load_gripper" default="true" />
   <arg name="moveit_use_bio_ik" default="false"/>
+  <arg name="use_franka_gazebo" default="false"/>
 
   <include file="$(find panda_moveit_config)/launch/planning_context.launch">
     <arg name="load_gripper" value="$(arg load_gripper)" />
     <arg name="moveit_use_bio_ik" value="$(arg moveit_use_bio_ik)" />
+    <arg name="use_franka_gazebo" value="$(arg use_franka_gazebo"/>
   </include>
 
   <arg name="pipeline" default="ompl" />
@@ -39,7 +41,9 @@
     <arg name="moveit_controller_manager" value="panda" if="$(eval not arg('fake_execution') and not arg('load_gripper'))"/>
     <arg name="moveit_controller_manager" value="panda_gripper" if="$(eval not arg('fake_execution') and arg('load_gripper'))"/>
     <arg name="moveit_controller_manager" value="fake" if="$(arg fake_execution)"/>
+    <arg name="use_franka_gazebo" value="$(arg use_franka_gazebo)"/>
   </include>
+
 
   <!-- Sensors Functionality -->
   <include ns="move_group" file="$(find panda_moveit_config)/launch/sensor_manager.launch.xml" if="$(arg allow_trajectory_execution)">
@@ -77,7 +81,9 @@
     <param name="planning_scene_monitor/publish_state_updates" value="$(arg publish_monitored_planning_scene)" />
     <param name="planning_scene_monitor/publish_transforms_updates" value="$(arg publish_monitored_planning_scene)" />
 
-    <remap from="/joint_states" to="/joint_states_desired" />
+    <!-- Not sure why in the case of Gazebo there is no _desired joint states, should investigate further -FB  -->
+    <remap from="/joint_states" to="panda/joint_states" if="$(arg use_franka_gazebo)"/>
+    <remap from="/joint_states" to="/joint_states_desired" unless="$(arg use_franka_gazebo)"/>
   </node>
 
 </launch>

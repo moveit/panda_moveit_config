@@ -10,8 +10,9 @@
   <arg name="rviz_command_args" default="" />
   <arg name="moveit_use_bio_ik" default="false" />
 
-  <include file="$(find panda_moveit_config)/launch/move_group_sim.launch">
+  <include file="$(find panda_moveit_config)/launch/move_group.launch">
     <arg name="moveit_use_bio_ik" value="$(arg moveit_use_bio_ik)" />
+    <arg name="use_franka_gazebo" value="true" />
   </include>
 
   <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg launch_rviz)" >
