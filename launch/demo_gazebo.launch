@@ -23,10 +23,11 @@
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_gripper" default="$(arg load_gripper)"/>
     <arg name="transmission" value="hardware_interface/PositionJointInterface"/>
+    <arg name="controller" value="position_joint_trajectory_controller"/>
   </include>
 
   <!-- Load position_joint_trajectory_controller -->
-  <include ns="panda" file="$(find panda_moveit_config)/launch/ros_controllers.launch"/>
+  <include file="$(find panda_moveit_config)/launch/ros_controllers.launch"/>
 
   <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
   <include ns="panda" file="$(find panda_moveit_config)/launch/move_group.launch">
@@ -35,12 +36,10 @@
     <arg name="allow_trajectory_execution" value="true"/>
     <arg name="fake_execution" value="false"/>
     <arg name="load_gripper" value="$(arg load_gripper)"/>
-    <arg name="load_robot_description" value="$(arg load_robot_description)"/>
   </include>
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include ns="panda" file="$(dirname)/moveit_rviz.launch">
-    <arg name="rviz_config" value="$(find panda_moveit_config)/launch/moveit.rviz"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
