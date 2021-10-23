@@ -8,8 +8,7 @@
   <!-- By default, we are not in debug mode -->
   <arg name="debug" default="false" />
 
-  <!-- By default, we won't load or override the robot_description -->
-  <arg name="load_robot_description" default="false"/>
+  <!-- By default we will load the gripper -->
   <arg name="load_gripper" default="true" />
 
   <!-- Gazebo specific options -->
@@ -18,31 +17,32 @@
 
   <!-- launch the gazebo simulator and spawn the robot -->
   <include file="$(find franka_gazebo)/launch/panda.launch">
-    <arg unless="$(arg gazebo_gui)" name="headless" value="true"/>
-    <arg     if="$(arg gazebo_gui)" name="headless" value="false"/>
+    <arg name="headless" value="$(eval not arg('gazebo_gui'))" />
     <arg name="paused" value="$(arg paused)"/>
     <arg name="use_gripper" default="$(arg load_gripper)"/>
     <arg name="transmission" value="hardware_interface/PositionJointInterface"/>
   </include>
 
-  <!-- Load position_joint_trajectory_controller -->
-  <include ns="panda" file="$(dirname)/ros_controllers.launch" />
+  <group ns="panda">
+    <!-- Load position_joint_trajectory_controller -->
+    <include file="$(dirname)/ros_controllers.launch" />
 
-  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
-  <include ns="panda" file="$(dirname)/move_group.launch">
-    <arg name="info" value="true"/>
-    <arg name="debug" value="$(arg debug)"/>
-    <arg name="allow_trajectory_execution" value="true"/>
-    <arg name="fake_execution" value="false"/>
-    <arg name="load_gripper" value="$(arg load_gripper)"/>
-    <arg name="load_robot_description" value="$(arg load_robot_description)"/>
-  </include>
+    <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
+    <include file="$(dirname)/move_group.launch">
+      <arg name="info" value="true" />
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="allow_trajectory_execution" value="true" />
+      <arg name="load_gripper" value="$(arg load_gripper)" />
+      <!-- robot description is loaded by franka_gazebo/panda.launch, to enable Gazebo features -->
+      <arg name="load_robot_description" value="false" />
+    </include>
 
-  <!-- Run Rviz and load the default config to see the state of the move_group node -->
-  <include ns="panda" file="$(dirname)/moveit_rviz.launch">
-    <arg name="rviz_config" value="$(dirname)/moveit.rviz" />
-    <arg name="debug" value="$(arg debug)"/>
-  </include>
+    <!-- Run Rviz and load the default config to see the state of the move_group node -->
+    <include file="$(dirname)/moveit_rviz.launch">
+      <arg name="rviz_config" value="$(dirname)/moveit.rviz" />
+      <arg name="debug" value="$(arg debug)" />
+    </include>
+  </group>
 
   <!-- If database loading was enabled, start mongodb as well -->
   <include file="$(dirname)/default_warehouse_db.launch" if="$(arg db)">
