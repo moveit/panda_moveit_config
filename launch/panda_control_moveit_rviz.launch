@@ -22,9 +22,9 @@
     <arg name="load_gripper" value="$(arg load_gripper)" />
   </include>
 
-  <include file="$(find panda_moveit_config)/launch/panda_moveit.launch">
+  <include file="$(dirname)/panda_moveit.launch">
     <arg name="load_gripper" value="$(arg load_gripper)" />
   </include>
 
-  <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch" if="$(arg launch_rviz)"/>
+  <include file="$(dirname)/moveit_rviz.launch" if="$(arg launch_rviz)" />
 </launch>

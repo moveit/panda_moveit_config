@@ -4,7 +4,7 @@
 
   <include file="$(dirname)/ros_controllers.launch"/>
 
-  <include file="$(find panda_moveit_config)/launch/move_group.launch">
+  <include file="$(dirname)/move_group.launch">
     <arg name="load_gripper" value="$(arg load_gripper)" />
   </include>
 </launch>

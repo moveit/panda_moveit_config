@@ -26,10 +26,10 @@
   </include>
 
   <!-- Load position_joint_trajectory_controller -->
-  <include ns="panda" file="$(find panda_moveit_config)/launch/ros_controllers.launch"/>
+  <include ns="panda" file="$(dirname)/ros_controllers.launch" />
 
   <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
-  <include ns="panda" file="$(find panda_moveit_config)/launch/move_group.launch">
+  <include ns="panda" file="$(dirname)/move_group.launch">
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
     <arg name="allow_trajectory_execution" value="true"/>
@@ -40,7 +40,7 @@
 
   <!-- Run Rviz and load the default config to see the state of the move_group node -->
   <include ns="panda" file="$(dirname)/moveit_rviz.launch">
-    <arg name="rviz_config" value="$(find panda_moveit_config)/launch/moveit.rviz"/>
+    <arg name="rviz_config" value="$(dirname)/moveit.rviz" />
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
