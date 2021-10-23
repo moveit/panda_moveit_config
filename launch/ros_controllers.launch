@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <launch>
 
-  <!-- Load joint controller configurations from YAML file to parameter server -->
-  <rosparam file="$(find panda_moveit_config)/config/ros_controllers.yaml" command="load"/>
+  <!-- Load controller configurations from YAML file(s) to parameter server -->
+  <rosparam file="$(find panda_moveit_config)/config/ros_controllers.yaml" />
 
-  <!-- Load the controllers -->
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="position_joint_trajectory_controller"/>
+  <!-- Load joint-trajectory controller into ROS controller_manager -->
+  <node name="trajectory_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="panda_arm_controller" />
 
 </launch>

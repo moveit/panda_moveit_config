@@ -1,5 +1,8 @@
 <launch>
 
+  <!-- specify the planning pipeline -->
+  <arg name="pipeline" default="ompl" />
+
   <!-- By default, we do not start a database (it can be large) -->
   <arg name="db" default="false" />
   <!-- Allow user to specify database location -->
@@ -24,14 +27,13 @@
   </include>
 
   <group ns="panda">
-    <!-- Load position_joint_trajectory_controller -->
-    <include file="$(dirname)/ros_controllers.launch" />
-
     <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
     <include file="$(dirname)/move_group.launch">
+      <arg name="allow_trajectory_execution" value="true" />
+      <arg name="moveit_controller_manager" value="ros_control" />
       <arg name="info" value="true" />
       <arg name="debug" value="$(arg debug)" />
-      <arg name="allow_trajectory_execution" value="true" />
+      <arg name="pipeline" value="$(arg pipeline)" />
       <arg name="load_gripper" value="$(arg load_gripper)" />
       <!-- robot description is loaded by franka_gazebo/panda.launch, to enable Gazebo features -->
       <arg name="load_robot_description" value="false" />
