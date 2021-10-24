@@ -1,0 +1,57 @@
+# Simulation settings for https://github.com/PickNikRobotics/moveit_sim_controller
+
+# Define Initial pose for joint model group
+moveit_sim_hw_interface:
+  joint_model_group: panda_arm
+  joint_model_group_pose: ready
+
+# Settings for ros_control_boilerplate control loop
+generic_hw_control_loop:
+  loop_hz: 300
+  cycle_time_error_threshold: 0.01
+
+# Settings for ros_control hardware interface
+hardware_interface:
+  joints: # Which joints are handled by the sim controller?
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+    - panda_finger_joint1
+  sim_control_mode: 1  # 0: position, 1: velocity
+
+# Settings for JointStateController that will publish joint_states
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+# Settings for velocity-based JointTrajectoryController
+# position/velocity choice needs to match hardware_interface/sim_control_mode
+panda_arm_controller:
+  type: velocity_controllers/JointTrajectoryController
+  joints:
+    - panda_joint1
+    - panda_joint2
+    - panda_joint3
+    - panda_joint4
+    - panda_joint5
+    - panda_joint6
+    - panda_joint7
+  gains:
+    panda_joint1: { p: 100, d: 0, i: 10, i_clamp: 1 }
+    panda_joint2: { p: 100, d: 0, i: 10, i_clamp: 1 }
+    panda_joint3: { p: 100, d: 0, i: 10, i_clamp: 1 }
+    panda_joint4: { p: 100, d: 0, i: 10, i_clamp: 1 }
+    panda_joint5: { p: 100, d: 0, i: 10, i_clamp: 1 }
+    panda_joint6: { p: 100, d: 0, i: 10, i_clamp: 1 }
+    panda_joint7: { p: 100, d: 0, i: 10, i_clamp: 1 }
+
+panda_hand_controller:
+  type: velocity_controllers/JointTrajectoryController
+  joints:
+      - panda_finger_joint1
+  gains:
+      panda_finger_joint1: { p: 100, d: 0, i: 10, i_clamp: 1 }

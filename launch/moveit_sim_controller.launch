@@ -1,0 +1,16 @@
+<launch>
+	<!-- Launch moveit_sim_controller node to run ROS controllers virtually
+       https://github.com/PickNikRobotics/moveit_sim_controller
+  -->
+	<!-- Load parameters for moveit_sim_controller -->
+	<rosparam file="$(find panda_moveit_config)/config/moveit_sim_controller.yaml" />
+	<!-- Start moveit_sim_controller node -->
+	<node name="moveit_sim_controller" pkg="moveit_sim_controller" type="moveit_sim_hw_main" respawn="false" output="screen" />
+	<!-- Spawn joint_state_controller -->
+	<node name="joint_state_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller" />
+	<!-- Given the published joint states, publish tf for the robot links -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+	<!-- Load joint-trajectory controllers for arm+hand into ROS controller_manager -->
+	<node name="trajectory_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="panda_arm_controller panda_hand_controller" />
+</launch>
