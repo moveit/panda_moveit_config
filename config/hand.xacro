@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
+    <xacro:macro name="finger_collisions" params="finger">
+        <!-- Disable all self-collisions between finger and arm links,
+             as these are already covered by the coarser hand collision model -->
+        <disable_collisions link1="${finger}" link2="panda_link0" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link1" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link2" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link3" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link4" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link5" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link6" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link7" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link8" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_hand" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_hand_coarse" reason="Default" />
+    </xacro:macro>
     <xacro:macro name="hand">
         <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
         <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
@@ -7,6 +22,7 @@
         <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
         <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
         <group name="hand">
+            <link name="panda_hand_coarse" />
             <link name="panda_hand"/>
             <link name="panda_leftfinger"/>
             <link name="panda_rightfinger"/>
@@ -24,23 +40,16 @@
         <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
         <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
         <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-        <disable_collisions link1="panda_hand" link2="panda_leftfinger" reason="Adjacent"/>
-        <disable_collisions link1="panda_hand" link2="panda_link4" reason="Never"/>
-        <disable_collisions link1="panda_hand" link2="panda_link5" reason="Default"/>
-        <disable_collisions link1="panda_hand" link2="panda_link6" reason="Never"/>
-        <disable_collisions link1="panda_hand" link2="panda_link7" reason="Default"/>
-        <disable_collisions link1="panda_hand" link2="panda_link8" reason="Adjacent"/>
-        <disable_collisions link1="panda_hand" link2="panda_rightfinger" reason="Adjacent"/>
-        <disable_collisions link1="panda_leftfinger" link2="panda_link4" reason="Never"/>
-        <disable_collisions link1="panda_leftfinger" link2="panda_link5" reason="Default"/>
-        <disable_collisions link1="panda_leftfinger" link2="panda_link6" reason="Never"/>
-        <disable_collisions link1="panda_leftfinger" link2="panda_link7" reason="Never"/>
-        <disable_collisions link1="panda_leftfinger" link2="panda_link8" reason="Never"/>
-        <disable_collisions link1="panda_leftfinger" link2="panda_rightfinger" reason="Default"/>
-        <disable_collisions link1="panda_link4" link2="panda_rightfinger" reason="Never"/>
-        <disable_collisions link1="panda_link5" link2="panda_rightfinger" reason="Default"/>
-        <disable_collisions link1="panda_link6" link2="panda_rightfinger" reason="Never"/>
-        <disable_collisions link1="panda_link7" link2="panda_rightfinger" reason="Never"/>
-        <disable_collisions link1="panda_link8" link2="panda_rightfinger" reason="Never"/>
+        <collision_default link="panda_hand_coarse" allow="ALWAYS" />
+        <enable_collisions link1="panda_hand_coarse" link2="panda_link0" />
+        <enable_collisions link1="panda_hand_coarse" link2="panda_link1" />
+        <enable_collisions link1="panda_hand_coarse" link2="panda_link2" />
+        <enable_collisions link1="panda_hand_coarse" link2="panda_link3" />
+        <disable_collisions link1="panda_hand" link2="panda_link7" />
+        <disable_collisions link1="panda_hand" link2="panda_link8" />
+
+        <xacro:finger_collisions finger="panda_leftfinger" />
+        <xacro:finger_collisions finger="panda_rightfinger" />
+        <disable_collisions link1="panda_leftfinger" link2="panda_rightfinger" reason="Default" />
     </xacro:macro>
 </robot>
