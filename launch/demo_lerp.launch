@@ -1,0 +1,6 @@
+
+<launch>
+  <include file="$(dirname)/demo.launch">
+    <arg name="pipeline" value="lerp"/>
+  </include>
+</launch>
