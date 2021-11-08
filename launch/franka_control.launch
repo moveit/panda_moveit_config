@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Launch real-robot control -->
+  <include file="$(find franka_control)/launch/franka_control.launch" pass_all_args="true" />
+
+  <!-- Load joint-trajectory controller into ROS controller_manager -->
+  <node name="trajectory_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_trajectory_controller" />
+
+  <!-- as well as MoveIt demo -->
+  <include file="$(dirname)/demo.launch" pass_all_args="true">
+    <!-- robot description is loaded by franka_control.launch -->
+    <arg name="load_robot_description" value="false" />
+    <!-- MoveItSimpleControllerManager provides ros_control's JointTrajectory controllers
+         as well as GripperCommand actions -->
+    <arg name="moveit_controller_manager" value="simple" />
+  </include>
+</launch>
