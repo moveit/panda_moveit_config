@@ -1,21 +1,27 @@
 <launch>
-
   <!-- specify the planning pipeline -->
   <arg name="pipeline" default="ompl" />
 
-  <!-- Gazebo specific options -->
-  <arg name="gazebo_gui" default="true"/>
-  <arg name="paused" default="false"/>
+  <!-- Panda specific options -->
+  <arg name="load_gripper" default="true" />
+  <arg name="transmission" default="effort" />
 
-  <!-- launch the gazebo simulator and spawn the robot -->
-  <include file="$(dirname)/gazebo.launch" >
-    <arg name="paused" value="$(arg paused)"/>
-    <arg name="gazebo_gui" value="$(arg gazebo_gui)"/>
+  <!-- Gazebo specific options -->
+  <arg name="gazebo_gui" default="true" />
+  <arg name="paused" default="false" />
+
+  <!-- Launch the gazebo simulator and spawn the robot -->
+  <include file="$(find franka_gazebo)/launch/panda.launch" pass_all_args="true">
+    <arg name="headless" value="$(eval not arg('gazebo_gui'))" />
+    <arg name="use_gripper" default="$(arg load_gripper)" />
+    <arg name="controller" default="joint_trajectory_controller" />
   </include>
 
   <include file="$(dirname)/demo.launch" pass_all_args="true">
     <!-- robot description is loaded by gazebo.launch, to enable Gazebo features -->
     <arg name="load_robot_description" value="false" />
-    <arg name="moveit_controller_manager" value="ros_control" />
+    <!-- MoveItSimpleControllerManager provides ros_control's JointTrajectory controllers
+         as well as GripperCommand actions -->
+    <arg name="moveit_controller_manager" value="simple" />
   </include>
 </launch>
