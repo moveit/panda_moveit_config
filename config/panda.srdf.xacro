@@ -5,7 +5,7 @@
 -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
     <xacro:include filename="$(find panda_moveit_config)/config/arm.xacro" />
-    <xacro:arm name="arm" tip_link="panda_tool" />
+    <xacro:arm name="manipulator" tip_link="panda_hand_tcp" />
     <!-- old group name with old end-effector link -->
     <xacro:arm name="panda_arm" tip_link="panda_link8"/>
 
@@ -17,7 +17,7 @@
         <xacro:hand />
 
         <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-        <end_effector name="tool" parent_link="panda_tool" group="hand" parent_group="arm" />
+        <end_effector name="hand_tcp" parent_link="panda_hand_tcp" group="hand" parent_group="manipulator" />
         <!-- old end-effector -->
         <end_effector name="hand" parent_link="panda_link8" group="hand" parent_group="panda_arm" />
     </xacro:if>
