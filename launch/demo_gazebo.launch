@@ -4,8 +4,7 @@
 
   <!-- Panda specific options -->
   <arg name="load_gripper" default="true" />
-  <arg name="transmission" default="effort" />
-
+  <arg name="transmission" default="hardware_interface/EffortJointInterface"/>
   <!-- Gazebo specific options -->
   <arg name="gazebo_gui" default="true" />
   <arg name="paused" default="false" />
@@ -14,7 +13,7 @@
   <include file="$(find franka_gazebo)/launch/panda.launch" pass_all_args="true">
     <arg name="headless" value="$(eval not arg('gazebo_gui'))" />
     <arg name="use_gripper" default="$(arg load_gripper)" />
-    <arg name="controller" default="joint_trajectory_controller" />
+    <arg name="controller" default="effort_joint_trajectory_controller" />
   </include>
 
   <include file="$(dirname)/demo.launch" pass_all_args="true">
