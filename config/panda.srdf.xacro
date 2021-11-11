@@ -15,7 +15,7 @@
         <xacro:hand />
 
         <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-        <end_effector name="hand" parent_link="panda_tool" group="hand" parent_group="panda_arm" />
+        <end_effector name="hand" parent_link="panda_hand_tcp" group="hand" parent_group="panda_arm" />
     </xacro:if>
 
 </robot>
