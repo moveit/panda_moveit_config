@@ -13,7 +13,7 @@
         <disable_collisions link1="${finger}" link2="panda_link7" reason="Default" />
         <disable_collisions link1="${finger}" link2="panda_link8" reason="Default" />
         <disable_collisions link1="${finger}" link2="panda_hand" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_hand_coarse" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_hand_sc" reason="Default" />
     </xacro:macro>
     <xacro:macro name="hand">
         <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
@@ -39,11 +39,19 @@
         <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
         <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
         <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-        <collision_default link="panda_hand_coarse" allow="ALWAYS" />
-        <enable_collisions link1="panda_hand_coarse" link2="panda_link0" />
-        <enable_collisions link1="panda_hand_coarse" link2="panda_link1" />
-        <enable_collisions link1="panda_hand_coarse" link2="panda_link2" />
-        <enable_collisions link1="panda_hand_coarse" link2="panda_link3" />
+        <collision_default link="panda_hand_sc" allow="ALWAYS" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link0" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link1" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link2" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link3" />
+        <!-- Disable collision of hand with all arm links. These are handled by the *_sc links -->
+        <disable_collisions link1="panda_hand" link2="panda_link0" />
+        <disable_collisions link1="panda_hand" link2="panda_link1" />
+        <disable_collisions link1="panda_hand" link2="panda_link2" />
+        <disable_collisions link1="panda_hand" link2="panda_link3" />
+        <disable_collisions link1="panda_hand" link2="panda_link4" />
+        <disable_collisions link1="panda_hand" link2="panda_link5" />
+        <disable_collisions link1="panda_hand" link2="panda_link6" />
         <disable_collisions link1="panda_hand" link2="panda_link7" />
         <disable_collisions link1="panda_hand" link2="panda_link8" />
 
