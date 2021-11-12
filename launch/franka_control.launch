@@ -2,9 +2,8 @@
 <launch>
   <!-- Launch real-robot control -->
   <include file="$(find franka_control)/launch/franka_control.launch" pass_all_args="true" />
-
-  <!-- Load joint-trajectory controller into ROS controller_manager -->
-  <node name="trajectory_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_trajectory_controller" />
+  <!-- By default use joint position controllers -->
+  <arg name="transmission" default="position" />
 
   <!-- as well as MoveIt demo -->
   <include file="$(dirname)/demo.launch" pass_all_args="true">

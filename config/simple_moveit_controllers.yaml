@@ -1,5 +1,5 @@
 controller_list:
-  - name: joint_trajectory_controller
+  - name: $(arg transmission)_joint_trajectory_controller
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     default: True
@@ -17,4 +17,3 @@ controller_list:
     default: True
     joints:
       - panda_finger_joint1
-
