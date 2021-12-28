@@ -39,7 +39,7 @@
         <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
         <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
         <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-        <collision_default link="panda_hand_sc" allow="ALWAYS" />
+        <disable_default_collisions link="panda_hand_sc" />
         <enable_collisions link1="panda_hand_sc" link2="panda_link0" />
         <enable_collisions link1="panda_hand_sc" link2="panda_link1" />
         <enable_collisions link1="panda_hand_sc" link2="panda_link2" />

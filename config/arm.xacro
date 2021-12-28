@@ -35,7 +35,7 @@
 
     <xacro:macro name="collision" params="link">
         <!-- Enable (environmental) collisions of ${link}_sc -->
-        <collision_default link="${link}_sc" allow="ALWAYS" />
+        <disable_default_collisions link="${link}_sc" />
         <!-- Disable collisions of link with any other arm link, as these are handled by the "sc" links -->
         <disable_collisions link1="${link}" link2="panda_link0" reason="Default" />
         <disable_collisions link1="${link}" link2="panda_link1" reason="Default" />
