@@ -21,5 +21,10 @@
   <!-- Add MoveGroup capabilities specific to this pipeline -->
   <!-- <param name="capabilities" value="" /> -->
 
-  <rosparam command="load" file="$(find panda_moveit_config)/config/stomp_planning.yaml"/>
+  <rosparam command="load" file="$(find panda_moveit_config)/config/stomp_planning.yaml" ns="stomp/panda_arm"/>
+  <param name="stomp/panda_arm" value="panda_arm" />
+
+  <rosparam command="load" file="$(find panda_moveit_config)/config/stomp_planning.yaml" ns="stomp/manipulator"/>
+  <param name="stomp/manipulator" value="manipulator" />
+
 </launch>
