@@ -20,8 +20,8 @@
 
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
-    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml"/>
-
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml" ns="panda_arm"/>
+    <rosparam command="load" file="$(find panda_moveit_config)/config/kinematics.yaml" ns="manipulator"/>
   </group>
 
 </launch>
