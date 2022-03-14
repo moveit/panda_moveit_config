@@ -40,10 +40,10 @@
         <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
         <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
         <disable_default_collisions link="panda_hand_sc" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link0" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link1" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link2" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link3" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link0_sc" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link1_sc" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link2_sc" />
+        <enable_collisions link1="panda_hand_sc" link2="panda_link3_sc" />
         <!-- Disable collision of hand with all arm links. These are handled by the *_sc links -->
         <disable_collisions link1="panda_hand" link2="panda_link0" />
         <disable_collisions link1="panda_hand" link2="panda_link1" />
