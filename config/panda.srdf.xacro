@@ -5,14 +5,15 @@
 -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
     <xacro:include filename="$(find panda_moveit_config)/config/arm.xacro" />
-    <xacro:arm name="manipulator" tip_link="panda_hand_tcp" />
-    <!-- old group name with old end-effector link -->
+    <!-- panda_arm group: eef frame aligned to robot's flanche -->
     <xacro:arm name="panda_arm" tip_link="panda_link8"/>
 
     <xacro:arg name="hand" default="false" />
 
     <!--Add the hand if people request it-->
     <xacro:if value="$(arg hand)">
+        <!-- manipulator group: eef frame aligned to hand -->
+        <xacro:arm name="manipulator" tip_link="panda_hand_tcp" />
         <xacro:include filename="$(find panda_moveit_config)/config/hand.xacro" />
         <xacro:hand />
 
