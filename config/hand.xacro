@@ -3,17 +3,16 @@
     <xacro:macro name="finger_collisions" params="finger">
         <!-- Disable all self-collisions between finger and arm links,
              as these are already covered by the coarser hand collision model -->
-        <disable_collisions link1="${finger}" link2="panda_link0" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link1" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link2" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link3" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link4" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link5" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link6" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link7" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link8" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_hand" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_hand_sc" reason="Default" />
+        <disable_collisions link1="${finger}" link2="panda_link0" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link1" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link2" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link3" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link4" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link5" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link6" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link7" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_link8" reason="Never" />
+        <disable_collisions link1="${finger}" link2="panda_hand" reason="Never" />
     </xacro:macro>
     <xacro:macro name="hand">
         <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
@@ -45,18 +44,18 @@
         <enable_collisions link1="panda_hand_sc" link2="panda_link2_sc" />
         <enable_collisions link1="panda_hand_sc" link2="panda_link3_sc" />
         <!-- Disable collision of hand with all arm links. These are handled by the *_sc links -->
-        <disable_collisions link1="panda_hand" link2="panda_link0" />
-        <disable_collisions link1="panda_hand" link2="panda_link1" />
-        <disable_collisions link1="panda_hand" link2="panda_link2" />
-        <disable_collisions link1="panda_hand" link2="panda_link3" />
-        <disable_collisions link1="panda_hand" link2="panda_link4" />
-        <disable_collisions link1="panda_hand" link2="panda_link5" />
-        <disable_collisions link1="panda_hand" link2="panda_link6" />
-        <disable_collisions link1="panda_hand" link2="panda_link7" />
-        <disable_collisions link1="panda_hand" link2="panda_link8" />
+        <disable_collisions link1="panda_hand" link2="panda_link0" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link1" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link2" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link3" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link4" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link5" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link6" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link7" reason="Never" />
+        <disable_collisions link1="panda_hand" link2="panda_link8" reason="Never" />
 
         <xacro:finger_collisions finger="panda_leftfinger" />
         <xacro:finger_collisions finger="panda_rightfinger" />
-        <disable_collisions link1="panda_leftfinger" link2="panda_rightfinger" reason="Default" />
+        <disable_collisions link1="panda_leftfinger" link2="panda_rightfinger" reason="Never" />
     </xacro:macro>
 </robot>

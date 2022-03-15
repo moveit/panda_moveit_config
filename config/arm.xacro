@@ -37,24 +37,15 @@
         <!-- Enable (environmental) collisions of ${link}_sc -->
         <disable_default_collisions link="${link}_sc" />
         <!-- Disable collisions of link with any other arm link, as these are handled by the "sc" links -->
-        <disable_collisions link1="${link}" link2="panda_link0" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link1" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link2" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link3" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link4" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link5" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link6" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link7" reason="Default" />
-        <disable_collisions link1="${link}" link2="panda_link8" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link0" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link1" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link2" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link3" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link4" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link5" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link6" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link7" reason="Default" />
-        <disable_collisions link1="${link}_sc" link2="panda_link8" reason="Default" />
+        <disable_collisions link1="${link}" link2="panda_link0" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link1" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link2" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link3" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link4" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link5" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link6" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link7" reason="Never" />
+        <disable_collisions link1="${link}" link2="panda_link8" reason="Never" />
     </xacro:macro>
     <xacro:collision link="panda_link0"/>
     <enable_collisions link1="panda_link0_sc" link2="panda_link5_sc" />
