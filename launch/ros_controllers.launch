@@ -6,5 +6,5 @@
 
   <!-- Load and start the controllers -->
   <node ns="/" name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
-        args="$(arg transmission)_joint_trajectory_controller franka_gripper" />
+        args="$(arg transmission)_joint_trajectory_controller" />
 </launch>
