@@ -1,6 +1,6 @@
 
-stomp/panda_arm:
-  group_name: panda_arm
+stomp/$(arg arm_id)_arm:
+  group_name: $(arg arm_id)_arm
   optimization:
     num_timesteps: 60
     num_iterations: 40

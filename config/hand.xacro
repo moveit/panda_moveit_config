@@ -3,17 +3,17 @@
     <xacro:macro name="finger_collisions" params="finger">
         <!-- Disable all self-collisions between finger and arm links,
              as these are already covered by the coarser hand collision model -->
-        <disable_collisions link1="${finger}" link2="panda_link0" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link1" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link2" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link3" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link4" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link5" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link6" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link7" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_link8" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_hand" reason="Default" />
-        <disable_collisions link1="${finger}" link2="panda_hand_sc" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link0" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link1" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link2" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link3" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link4" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link5" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link6" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link7" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link8" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_hand" reason="Default" />
+        <disable_collisions link1="${finger}" link2="$(arg arm_id)_hand_sc" reason="Default" />
     </xacro:macro>
     <xacro:macro name="hand">
         <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
@@ -22,41 +22,41 @@
         <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
         <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
         <group name="hand">
-            <link name="panda_hand"/>
-            <link name="panda_leftfinger"/>
-            <link name="panda_rightfinger"/>
+            <link name="$(arg arm_id)_hand"/>
+            <link name="$(arg arm_id)_leftfinger"/>
+            <link name="$(arg arm_id)_rightfinger"/>
         </group>
         <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
         <group_state name="open" group="hand">
-            <joint name="panda_finger_joint1" value="0.035"/>
-            <joint name="panda_finger_joint2" value="0.035"/>
+            <joint name="$(arg arm_id)_finger_joint1" value="0.035"/>
+            <joint name="$(arg arm_id)_finger_joint2" value="0.035"/>
         </group_state>
         <group_state name="close" group="hand">
-            <joint name="panda_finger_joint1" value="0"/>
-            <joint name="panda_finger_joint2" value="0"/>
+            <joint name="$(arg arm_id)_finger_joint1" value="0"/>
+            <joint name="$(arg arm_id)_finger_joint2" value="0"/>
         </group_state>
         <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
         <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
         <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
         <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-        <disable_default_collisions link="panda_hand_sc" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link0" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link1" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link2" />
-        <enable_collisions link1="panda_hand_sc" link2="panda_link3" />
+        <disable_default_collisions link="$(arg arm_id)_hand_sc" />
+        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link0" />
+        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link1" />
+        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link2" />
+        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link3" />
         <!-- Disable collision of hand with all arm links. These are handled by the *_sc links -->
-        <disable_collisions link1="panda_hand" link2="panda_link0" />
-        <disable_collisions link1="panda_hand" link2="panda_link1" />
-        <disable_collisions link1="panda_hand" link2="panda_link2" />
-        <disable_collisions link1="panda_hand" link2="panda_link3" />
-        <disable_collisions link1="panda_hand" link2="panda_link4" />
-        <disable_collisions link1="panda_hand" link2="panda_link5" />
-        <disable_collisions link1="panda_hand" link2="panda_link6" />
-        <disable_collisions link1="panda_hand" link2="panda_link7" />
-        <disable_collisions link1="panda_hand" link2="panda_link8" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link0" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link1" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link2" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link3" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link4" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link5" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link6" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link7" />
+        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link8" />
 
-        <xacro:finger_collisions finger="panda_leftfinger" />
-        <xacro:finger_collisions finger="panda_rightfinger" />
-        <disable_collisions link1="panda_leftfinger" link2="panda_rightfinger" reason="Default" />
+        <xacro:finger_collisions finger="$(arg arm_id)_leftfinger" />
+        <xacro:finger_collisions finger="$(arg arm_id)_rightfinger" />
+        <disable_collisions link1="$(arg arm_id)_leftfinger" link2="$(arg arm_id)_rightfinger" reason="Default" />
     </xacro:macro>
 </robot>
