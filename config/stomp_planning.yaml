@@ -1,4 +1,3 @@
-
 stomp/$(arg arm_id)_arm:
   group_name: $(arg arm_id)_arm
   optimization:

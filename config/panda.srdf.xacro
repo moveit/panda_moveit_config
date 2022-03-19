@@ -14,6 +14,8 @@
     
     <!--Add the hand if people request it-->
     <xacro:if value="$(arg hand)">
+        <!-- manipulator group: eef frame aligned to hand -->
+        <xacro:arm name="manipulator" tip_link="panda_hand_tcp" />
         <xacro:include filename="$(find panda_moveit_config)/config/hand.xacro" />
         <xacro:hand />
 
