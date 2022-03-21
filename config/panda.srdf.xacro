@@ -5,22 +5,23 @@
 -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
     <xacro:include filename="$(find panda_moveit_config)/config/arm.xacro" />
+    <xacro:arg name="arm_id" default="panda" />
     <!-- panda_arm group: eef frame aligned to robot's flanche -->
-    <xacro:arm name="panda_arm" tip_link="panda_link8"/>
+    <xacro:arm name="$(arg arm_id)_arm" tip_link="$(arg arm_id)_link8"/>
 
     <xacro:arg name="hand" default="false" />
 
     <!--Add the hand if people request it-->
     <xacro:if value="$(arg hand)">
         <!-- manipulator group: eef frame aligned to hand -->
-        <xacro:arm name="manipulator" tip_link="panda_hand_tcp" />
+        <xacro:arm name="$(arg arm_id)_manipulator" tip_link="$(arg arm_id)_hand_tcp" />
         <xacro:include filename="$(find panda_moveit_config)/config/hand.xacro" />
         <xacro:hand />
 
         <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-        <end_effector name="hand_tcp" parent_link="panda_hand_tcp" group="hand" parent_group="manipulator" />
+        <end_effector name="hand_tcp" parent_link="$(arg arm_id)_hand_tcp" group="hand" parent_group="$(arg arm_id)_manipulator" />
         <!-- old end-effector -->
-        <end_effector name="hand" parent_link="panda_link8" group="hand" parent_group="panda_arm" />
+        <end_effector name="hand" parent_link="$(arg arm_id)_link8" group="hand" parent_group="$(arg arm_id)_arm" />
     </xacro:if>
 
 </robot>

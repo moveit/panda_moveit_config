@@ -14,47 +14,47 @@ default_acceleration_scaling_factor: 0.1
 # max_jerk = (max_acceleration - min_acceleration) / 0.001
 
 joint_limits:
-  panda_finger_joint1:
+  $(arg arm_id)_finger_joint1:
     has_velocity_limits: true
     max_velocity: 0.1
     has_acceleration_limits: false
     max_acceleration: 0
-  panda_finger_joint2:
+  $(arg arm_id)_finger_joint2:
     has_velocity_limits: true
     max_velocity: 0.1
     has_acceleration_limits: false
     max_acceleration: 0
-  panda_joint1:
+  $(arg arm_id)_joint1:
     has_velocity_limits: true
     max_velocity: 2.1750
     has_acceleration_limits: true
     max_acceleration: 3.75
-  panda_joint2:
+  $(arg arm_id)_joint2:
     has_velocity_limits: true
     max_velocity: 2.1750
     has_acceleration_limits: true
     max_acceleration: 1.875
-  panda_joint3:
+  $(arg arm_id)_joint3:
     has_velocity_limits: true
     max_velocity: 2.1750
     has_acceleration_limits: true
     max_acceleration: 2.5
-  panda_joint4:
+  $(arg arm_id)_joint4:
     has_velocity_limits: true
     max_velocity: 2.1750
     has_acceleration_limits: true
     max_acceleration: 3.125
-  panda_joint5:
+  $(arg arm_id)_joint5:
     has_velocity_limits: true
     max_velocity: 2.6100
     has_acceleration_limits: true
     max_acceleration: 3.75
-  panda_joint6:
+  $(arg arm_id)_joint6:
     has_velocity_limits: true
     max_velocity: 2.6100
     has_acceleration_limits: true
     max_acceleration: 5
-  panda_joint7:
+  $(arg arm_id)_joint7:
     has_velocity_limits: true
     max_velocity: 2.6100
     has_acceleration_limits: true
