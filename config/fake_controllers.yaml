@@ -18,5 +18,5 @@ controller_list:
 initial:  # Define initial robot poses per group
   - group: $(arg arm_id)_arm
     pose: ready
-  - group: hand
+  - group: $(arg arm_id)_hand
     pose: open

@@ -9,9 +9,8 @@
     <!-- panda_arm group: eef frame aligned to robot's flanche -->
     <xacro:arm name="$(arg arm_id)_arm" tip_link="$(arg arm_id)_link8"/>
 
-    <xacro:arg name="hand" default="false" />
-
     <!--Add the hand if people request it-->
+    <xacro:arg name="hand" default="false" />
     <xacro:if value="$(arg hand)">
         <!-- manipulator group: eef frame aligned to hand -->
         <xacro:arm name="$(arg arm_id)_manipulator" tip_link="$(arg arm_id)_hand_tcp" />
@@ -19,9 +18,9 @@
         <xacro:hand />
 
         <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
-        <end_effector name="hand_tcp" parent_link="$(arg arm_id)_hand_tcp" group="hand" parent_group="$(arg arm_id)_manipulator" />
+        <end_effector name="$(arg arm_id)_hand_tcp" parent_link="$(arg arm_id)_hand_tcp" group="$(arg arm_id)_hand" parent_group="$(arg arm_id)_manipulator" />
         <!-- old end-effector -->
-        <end_effector name="hand" parent_link="$(arg arm_id)_link8" group="hand" parent_group="$(arg arm_id)_arm" />
+        <end_effector name="$(arg arm_id)_hand" parent_link="$(arg arm_id)_link8" group="$(arg arm_id)_hand" parent_group="$(arg arm_id)_arm" />
     </xacro:if>
 
 </robot>

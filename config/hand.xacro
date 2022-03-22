@@ -20,17 +20,17 @@
         <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
         <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
         <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
-        <group name="hand">
+        <group name="$(arg arm_id)_hand">
             <link name="$(arg arm_id)_hand"/>
             <link name="$(arg arm_id)_leftfinger"/>
             <link name="$(arg arm_id)_rightfinger"/>
         </group>
         <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
-        <group_state name="open" group="hand">
+        <group_state name="open" group="$(arg arm_id)_hand">
             <joint name="$(arg arm_id)_finger_joint1" value="0.035"/>
             <joint name="$(arg arm_id)_finger_joint2" value="0.035"/>
         </group_state>
-        <group_state name="close" group="hand">
+        <group_state name="close" group="$(arg arm_id)_hand">
             <joint name="$(arg arm_id)_finger_joint1" value="0"/>
             <joint name="$(arg arm_id)_finger_joint2" value="0"/>
         </group_state>

@@ -155,8 +155,8 @@ $(arg arm_id)_arm: &arm_config
     - SPARStwo
   projection_evaluator: joints($(arg arm_id)_joint1,$(arg arm_id)_joint2)
   longest_valid_segment_fraction: 0.005
-manipulator: *arm_config
-hand:
+$(arg arm_id)_manipulator: *arm_config
+$(arg arm_id)_hand:
   planner_configs:
     - AnytimePathShortening
     - SBL
