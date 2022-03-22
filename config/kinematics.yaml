@@ -1,4 +1,4 @@
-panda_arm: &arm_config
+$(arg arm_id)_arm: &arm_config
   kinematics_solver: kdl_kinematics_plugin/KDLKinematicsPlugin
   kinematics_solver_search_resolution: 0.005
   kinematics_solver_timeout: 0.05

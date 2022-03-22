@@ -7,67 +7,67 @@
         <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
         <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
         <group name="${name}">
-            <chain base_link="panda_link0" tip_link="${tip_link}" />
+            <chain base_link="$(arg arm_id)_link0" tip_link="${tip_link}" />
         </group>
         <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
         <group_state name="ready" group="${name}">
-            <joint name="panda_joint1" value="0" />
-            <joint name="panda_joint2" value="${-pi/4}" />
-            <joint name="panda_joint3" value="0" />
-            <joint name="panda_joint4" value="${-3*pi/4}" />
-            <joint name="panda_joint5" value="0" />
-            <joint name="panda_joint6" value="${pi/2}" />
-            <joint name="panda_joint7" value="${pi/4}" />
+            <joint name="$(arg arm_id)_joint1" value="0" />
+            <joint name="$(arg arm_id)_joint2" value="${-pi/4}" />
+            <joint name="$(arg arm_id)_joint3" value="0" />
+            <joint name="$(arg arm_id)_joint4" value="${-3*pi/4}" />
+            <joint name="$(arg arm_id)_joint5" value="0" />
+            <joint name="$(arg arm_id)_joint6" value="${pi/2}" />
+            <joint name="$(arg arm_id)_joint7" value="${pi/4}" />
         </group_state>
         <group_state name="extended" group="${name}">
-            <joint name="panda_joint1" value="0" />
-            <joint name="panda_joint2" value="0" />
-            <joint name="panda_joint3" value="0" />
-            <joint name="panda_joint4" value="-0.1" />
-            <joint name="panda_joint5" value="0" />
-            <joint name="panda_joint6" value="${pi}" />
-            <joint name="panda_joint7" value="${pi/4}" />
+            <joint name="$(arg arm_id)_joint1" value="0" />
+            <joint name="$(arg arm_id)_joint2" value="0" />
+            <joint name="$(arg arm_id)_joint3" value="0" />
+            <joint name="$(arg arm_id)_joint4" value="-0.1" />
+            <joint name="$(arg arm_id)_joint5" value="0" />
+            <joint name="$(arg arm_id)_joint6" value="${pi}" />
+            <joint name="$(arg arm_id)_joint7" value="${pi/4}" />
         </group_state>
     </xacro:macro>
 
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
-    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="panda_link0" />
+    <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="$(arg arm_id)_link0" />
 
     <xacro:macro name="collision" params="link">
         <!-- Enable (environmental) collisions of ${link}_sc -->
         <disable_default_collisions link="${link}_sc" />
         <!-- Disable collisions of link with any other arm link, as these are handled by the "sc" links -->
-        <disable_collisions link1="${link}" link2="panda_link0" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link1" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link2" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link3" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link4" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link5" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link6" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link7" reason="Never" />
-        <disable_collisions link1="${link}" link2="panda_link8" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link0" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link1" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link2" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link3" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link4" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link5" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link6" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link7" reason="Never" />
+        <disable_collisions link1="${link}" link2="$(arg arm_id)_link8" reason="Never" />
     </xacro:macro>
-    <xacro:collision link="panda_link0"/>
-    <enable_collisions link1="panda_link0_sc" link2="panda_link5_sc" />
-    <enable_collisions link1="panda_link0_sc" link2="panda_link6_sc" />
-    <enable_collisions link1="panda_link0_sc" link2="panda_link7_sc" />
-    <enable_collisions link1="panda_link0_sc" link2="panda_link8_sc" />
-    <xacro:collision link="panda_link1" />
-    <enable_collisions link1="panda_link1_sc" link2="panda_link5_sc" />
-    <enable_collisions link1="panda_link1_sc" link2="panda_link6_sc" />
-    <enable_collisions link1="panda_link1_sc" link2="panda_link7_sc" />
-    <enable_collisions link1="panda_link1_sc" link2="panda_link8_sc" />
-    <xacro:collision link="panda_link2" />
-    <enable_collisions link1="panda_link2_sc" link2="panda_link5_sc" />
-    <enable_collisions link1="panda_link2_sc" link2="panda_link6_sc" />
-    <enable_collisions link1="panda_link2_sc" link2="panda_link7_sc" />
-    <enable_collisions link1="panda_link2_sc" link2="panda_link8_sc" />
-    <xacro:collision link="panda_link3" />
-    <enable_collisions link1="panda_link3_sc" link2="panda_link7_sc" />
-    <enable_collisions link1="panda_link3_sc" link2="panda_link8_sc" />
-    <xacro:collision link="panda_link4" />
-    <xacro:collision link="panda_link5" />
-    <xacro:collision link="panda_link6" />
-    <xacro:collision link="panda_link7" />
-    <xacro:collision link="panda_link8" />
+    <xacro:collision link="$(arg arm_id)_link0"/>
+    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link5_sc" />
+    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link6_sc" />
+    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link7_sc" />
+    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link8_sc" />
+    <xacro:collision link="$(arg arm_id)_link1" />
+    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link5_sc" />
+    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link6_sc" />
+    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link7_sc" />
+    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link8_sc" />
+    <xacro:collision link="$(arg arm_id)_link2" />
+    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link5_sc" />
+    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link6_sc" />
+    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link7_sc" />
+    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link8_sc" />
+    <xacro:collision link="$(arg arm_id)_link3" />
+    <enable_collisions link1="$(arg arm_id)_link3_sc" link2="$(arg arm_id)_link7_sc" />
+    <enable_collisions link1="$(arg arm_id)_link3_sc" link2="$(arg arm_id)_link8_sc" />
+    <xacro:collision link="$(arg arm_id)_link4" />
+    <xacro:collision link="$(arg arm_id)_link5" />
+    <xacro:collision link="$(arg arm_id)_link6" />
+    <xacro:collision link="$(arg arm_id)_link7" />
+    <xacro:collision link="$(arg arm_id)_link8" />
 </robot>

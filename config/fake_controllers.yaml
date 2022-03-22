@@ -1,31 +1,22 @@
 controller_list:
-  - name: fake_panda_arm_controller
+  - name: fake_$(arg arm_id)_arm_controller
     type: $(arg fake_execution_type)
     joints:
-      - panda_joint1
-      - panda_joint2
-      - panda_joint3
-      - panda_joint4
-      - panda_joint5
-      - panda_joint6
-      - panda_joint7
-  - name: fake_hand_controller
+      - $(arg arm_id)_joint1
+      - $(arg arm_id)_joint2
+      - $(arg arm_id)_joint3
+      - $(arg arm_id)_joint4
+      - $(arg arm_id)_joint5
+      - $(arg arm_id)_joint6
+      - $(arg arm_id)_joint7
+
+  - name: fake_$(arg arm_id)_hand_controller
     type: $(arg fake_execution_type)
     joints:
-      - panda_finger_joint1
-  - name: fake_panda_arm_hand_controller
-    type: $(arg fake_execution_type)
-    joints:
-      - panda_joint1
-      - panda_joint2
-      - panda_joint3
-      - panda_joint4
-      - panda_joint5
-      - panda_joint6
-      - panda_joint7
-      - panda_finger_joint1
+      - $(arg arm_id)_finger_joint1
+
 initial:  # Define initial robot poses per group
-  - group: panda_arm
+  - group: $(arg arm_id)_arm
     pose: ready
   - group: hand
     pose: open
