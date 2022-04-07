@@ -2,8 +2,11 @@
 <launch>
   <!-- Launch real-robot control -->
   <include file="$(find franka_control)/launch/franka_control.launch" pass_all_args="true" />
+
   <!-- By default use joint position controllers -->
   <arg name="transmission" default="position" />
+  <!-- Start ROS controllers -->
+  <include file="$(dirname)/ros_controllers.launch" pass_all_args="true" />
 
   <!-- as well as MoveIt demo -->
   <include file="$(dirname)/demo.launch" pass_all_args="true">

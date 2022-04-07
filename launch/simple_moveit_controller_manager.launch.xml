@@ -4,6 +4,4 @@
 
   <!-- Load controller list to the parameter server -->
   <rosparam subst_value="true" file="$(find panda_moveit_config)/config/simple_moveit_controllers.yaml" />
-  <!-- Start ROS controllers -->
-  <include file="$(dirname)/ros_controllers.launch" pass_all_args="true" />
 </launch>
