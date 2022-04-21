@@ -51,20 +51,16 @@
     <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link5_sc" />
     <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link6_sc" />
     <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link7_sc" />
-    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link8_sc" />
     <xacro:collision link="$(arg arm_id)_link1" />
     <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link5_sc" />
     <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link6_sc" />
     <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link7_sc" />
-    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link8_sc" />
     <xacro:collision link="$(arg arm_id)_link2" />
     <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link5_sc" />
     <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link6_sc" />
     <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link7_sc" />
-    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link8_sc" />
     <xacro:collision link="$(arg arm_id)_link3" />
     <enable_collisions link1="$(arg arm_id)_link3_sc" link2="$(arg arm_id)_link7_sc" />
-    <enable_collisions link1="$(arg arm_id)_link3_sc" link2="$(arg arm_id)_link8_sc" />
     <xacro:collision link="$(arg arm_id)_link4" />
     <xacro:collision link="$(arg arm_id)_link5" />
     <xacro:collision link="$(arg arm_id)_link6" />
