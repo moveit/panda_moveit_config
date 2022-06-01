@@ -35,7 +35,9 @@
 
     <xacro:macro name="collision" params="link">
         <!-- Enable (environmental) collisions of ${link}_sc -->
-        <disable_default_collisions link="${link}_sc" />
+        <xacro:if value="${not link.endswith('link8')}">
+            <disable_default_collisions link="${link}_sc" />
+        </xacro:if>
         <!-- Disable collisions of link with any other arm link, as these are handled by the "sc" links -->
         <disable_collisions link1="${link}" link2="$(arg arm_id)_link0" reason="Never" />
         <disable_collisions link1="${link}" link2="$(arg arm_id)_link1" reason="Never" />
