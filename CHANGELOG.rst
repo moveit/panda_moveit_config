@@ -2,6 +2,12 @@
 Changelog for package panda_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.6 (2022-08-18)
+------------------
+* Update to franka_description 0.9 (`#83 <https://github.com/ros-planning/panda_moveit_config/issues/83>`_)
+* Add 'demo_stomp' launch file (`#82 <https://github.com/ros-planning/panda_moveit_config/issues/82>`_)
+* Contributors: Gauthier Hentz, Michel Breyer, Rick Staa, Robert Haschke
+
 0.7.5 (2021-03-25)
 ------------------
 * Update SRDF for collision model (`#35 <https://github.com/ros-planning/panda_moveit_config/issues/35>`_)
