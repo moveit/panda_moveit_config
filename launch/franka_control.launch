@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <launch>
+  <arg name="robot_ip" />
+  <arg name="load_gripper" />
+
   <!-- Launch real-robot control -->
   <include file="$(find franka_control)/launch/franka_control.launch" pass_all_args="true" />
 
