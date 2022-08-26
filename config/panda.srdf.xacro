@@ -4,8 +4,9 @@
     A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
 -->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
-    <xacro:include filename="$(find panda_moveit_config)/config/arm.xacro" />
     <xacro:arg name="arm_id" default="panda" />
+
+    <xacro:include filename="$(find panda_moveit_config)/config/arm.xacro" />
     <!-- panda_arm group: eef frame aligned to robot's flanche -->
     <xacro:arm name="$(arg arm_id)_arm" tip_link="$(arg arm_id)_link8"/>
 
