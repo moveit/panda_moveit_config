@@ -24,18 +24,22 @@
         <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
         <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
         <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-        <!-- Disable collisions for hand_sc by default (with environment) -->
-        <disable_default_collisions link="$(arg arm_id)_hand_sc" />
-        <!-- Reenable collision of hand_sc for selected arm sc links -->
-        <xacro:property name="link_fmt" value="$(arg arm_id)_link{}_sc" />
-        <xacro:enable_collisions_for link="$(arg arm_id)_hand_sc" others="${[link_fmt.format(i) for i in [0,1,2,3]]}" />
         <!-- Disable collision of hand link with all arm links. These are handled by the *_sc links -->
         <xacro:property name="link_fmt" value="$(arg arm_id)_link{}" />
         <xacro:disable_collisions_for link="$(arg arm_id)_hand" others="${[link_fmt.format(i) for i in python.range(8)]}" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_hand_sc" others="${[link_fmt.format(i) for i in python.range(8)]}" />
+        <disable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_hand" reason="Never" />
         <!-- Disable collision of fingers with all arm links -->
-        <xacro:property name="others" value="${[link_fmt.format(i) for i in python.range(8)] + [xacro.arg('arm_id') + '_hand']}" />
+        <xacro:property name="others" value="${[link_fmt.format(i) for i in python.range(8)] + [xacro.arg('arm_id') + '_hand', xacro.arg('arm_id') + '_hand_sc']}" />
         <xacro:disable_collisions_for link="$(arg arm_id)_leftfinger" others="${list(others)}" />
         <xacro:disable_collisions_for link="$(arg arm_id)_rightfinger" others="${list(others)}" />
         <disable_collisions link1="$(arg arm_id)_leftfinger" link2="$(arg arm_id)_rightfinger" reason="Never" />
+        <!-- Disable collision of hand+fingers with all arm sc links -->
+        <xacro:property name="link_fmt" value="$(arg arm_id)_link{}_sc" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_hand" others="${[link_fmt.format(i) for i in python.range(8)]}" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_leftfinger" others="${[link_fmt.format(i) for i in python.range(8)]}" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_rightfinger" others="${[link_fmt.format(i) for i in python.range(8)]}" />
+        <!-- Disable collision of hand_sc with selected arm sc links -->
+        <xacro:disable_collisions_for link="$(arg arm_id)_hand_sc" others="${[link_fmt.format(i) for i in [4,5,6,7]]}" />
     </xacro:macro>
 </robot>

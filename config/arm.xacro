@@ -41,24 +41,15 @@
             <xacro:disable_collisions_for />
         </xacro:if>
     </xacro:macro>
-    <xacro:macro name="enable_collisions_for" params="link:=^ others:=^">
-        <xacro:if value="${others}">
-            <xacro:property name="other" value="${others.pop(0)}" />
-            <enable_collisions link1="${link}" link2="${other}" />
-            <!-- recursively call -->
-            <xacro:enable_collisions_for />
-        </xacro:if>
-    </xacro:macro>
     <xacro:macro name="configure_collisions" params="link enabled:=${[]}">
         <!-- Disable collision checking between normal links, as these are handled by "sc" links -->
         <xacro:property name="link_fmt" value="$(arg arm_id)_link{}" />
-        <xacro:disable_collisions_for link="${link_fmt.format(link)}" others="${[link_fmt.format(i) for i in python.range(8)]}" />
-
-        <!-- Disable all collision checking for ${link}_sc -->
+        <xacro:disable_collisions_for link="$(arg arm_id)_link${link}" others="${[link_fmt.format(i) for i in python.range(8)]}" />
+        <!-- Disable collision checking between normal and "sc" links -->
         <xacro:property name="link_fmt" value="$(arg arm_id)_link{}_sc" />
-        <disable_default_collisions link="${link_fmt.format(link)}" />
-        <!-- Re-enable collisions checking for selected links -->
-        <xacro:enable_collisions_for link="${link_fmt.format(link)}" others="${[link_fmt.format(i) for i in enabled]}" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_link${link}" others="${[link_fmt.format(i) for i in python.range(8)]}" />
+        <!-- Disable collisions between not enabled sc links -->
+        <xacro:disable_collisions_for link="${link_fmt.format(link)}" others="${[link_fmt.format(i) for i in python.range(link, 8) if i not in enabled]}" />
     </xacro:macro>
 
     <!-- Configure ACM -->
