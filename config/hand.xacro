@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda">
-    <xacro:macro name="finger_collisions" params="finger">
-        <!-- Disable all self-collisions between finger and arm links,
-             as these are already covered by the coarser hand collision model -->
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link0" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link1" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link2" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link3" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link4" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link5" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link6" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link7" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_link8" reason="Never" />
-        <disable_collisions link1="${finger}" link2="$(arg arm_id)_hand" reason="Never" />
-    </xacro:macro>
     <xacro:macro name="hand">
         <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
         <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
@@ -38,24 +24,18 @@
         <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
         <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
         <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+        <!-- Disable collisions for hand_sc by default (with environment) -->
         <disable_default_collisions link="$(arg arm_id)_hand_sc" />
-        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link0_sc" />
-        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link1_sc" />
-        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link2_sc" />
-        <enable_collisions link1="$(arg arm_id)_hand_sc" link2="$(arg arm_id)_link3_sc" />
-        <!-- Disable collision of hand with all arm links. These are handled by the *_sc links -->
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link0" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link1" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link2" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link3" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link4" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link5" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link6" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link7" reason="Never" />
-        <disable_collisions link1="$(arg arm_id)_hand" link2="$(arg arm_id)_link8" reason="Never" />
-
-        <xacro:finger_collisions finger="$(arg arm_id)_leftfinger" />
-        <xacro:finger_collisions finger="$(arg arm_id)_rightfinger" />
+        <!-- Reenable collision of hand_sc for selected arm sc links -->
+        <xacro:property name="link_fmt" value="$(arg arm_id)_link{}_sc" />
+        <xacro:enable_collisions_for link="$(arg arm_id)_hand_sc" others="${[link_fmt.format(i) for i in [0,1,2,3]]}" />
+        <!-- Disable collision of hand link with all arm links. These are handled by the *_sc links -->
+        <xacro:property name="link_fmt" value="$(arg arm_id)_link{}" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_hand" others="${[link_fmt.format(i) for i in python.range(9)]}" />
+        <!-- Disable collision of fingers with all arm links -->
+        <xacro:property name="others" value="${[link_fmt.format(i) for i in python.range(9)] + [xacro.arg('arm_id') + '_hand']}" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_leftfinger" others="${list(others)}" />
+        <xacro:disable_collisions_for link="$(arg arm_id)_rightfinger" others="${list(others)}" />
         <disable_collisions link1="$(arg arm_id)_leftfinger" link2="$(arg arm_id)_rightfinger" reason="Never" />
     </xacro:macro>
 </robot>

@@ -33,39 +33,44 @@
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="virtual_joint" type="fixed" parent_frame="world" child_link="$(arg arm_id)_link0" />
 
-    <xacro:macro name="collision" params="link">
-        <!-- Enable (environmental) collisions of ${link}_sc -->
-        <xacro:if value="${not link.endswith('link8')}">
-            <disable_default_collisions link="${link}_sc" />
+    <xacro:macro name="disable_collisions_for" params="link:=^ others:=^">
+        <xacro:if value="${others}">
+            <xacro:property name="other" value="${others.pop(0)}" />
+            <disable_collisions link1="${link}" link2="${other}" reason="Never" />
+            <!-- recursively call -->
+            <xacro:disable_collisions_for />
         </xacro:if>
-        <!-- Disable collisions of link with any other arm link, as these are handled by the "sc" links -->
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link0" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link1" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link2" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link3" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link4" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link5" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link6" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link7" reason="Never" />
-        <disable_collisions link1="${link}" link2="$(arg arm_id)_link8" reason="Never" />
     </xacro:macro>
-    <xacro:collision link="$(arg arm_id)_link0"/>
-    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link5_sc" />
-    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link6_sc" />
-    <enable_collisions link1="$(arg arm_id)_link0_sc" link2="$(arg arm_id)_link7_sc" />
-    <xacro:collision link="$(arg arm_id)_link1" />
-    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link5_sc" />
-    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link6_sc" />
-    <enable_collisions link1="$(arg arm_id)_link1_sc" link2="$(arg arm_id)_link7_sc" />
-    <xacro:collision link="$(arg arm_id)_link2" />
-    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link5_sc" />
-    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link6_sc" />
-    <enable_collisions link1="$(arg arm_id)_link2_sc" link2="$(arg arm_id)_link7_sc" />
-    <xacro:collision link="$(arg arm_id)_link3" />
-    <enable_collisions link1="$(arg arm_id)_link3_sc" link2="$(arg arm_id)_link7_sc" />
-    <xacro:collision link="$(arg arm_id)_link4" />
-    <xacro:collision link="$(arg arm_id)_link5" />
-    <xacro:collision link="$(arg arm_id)_link6" />
-    <xacro:collision link="$(arg arm_id)_link7" />
-    <xacro:collision link="$(arg arm_id)_link8" />
+    <xacro:macro name="enable_collisions_for" params="link:=^ others:=^">
+        <xacro:if value="${others}">
+            <xacro:property name="other" value="${others.pop(0)}" />
+            <enable_collisions link1="${link}" link2="${other}" />
+            <!-- recursively call -->
+            <xacro:enable_collisions_for />
+        </xacro:if>
+    </xacro:macro>
+    <xacro:macro name="configure_collisions" params="link enabled:=${[]}">
+        <!-- Disable collision checking between normal links, as these are handled by "sc" links -->
+        <xacro:property name="link_fmt" value="$(arg arm_id)_link{}" />
+        <xacro:disable_collisions_for link="${link_fmt.format(link)}" others="${[link_fmt.format(i) for i in python.range(9)]}" />
+
+        <!-- Disable all collision checking for ${link}_sc -->
+        <xacro:property name="link_fmt" value="$(arg arm_id)_link{}_sc" />
+        <xacro:if value="${link != 8}">
+            <disable_default_collisions link="${link_fmt.format(link)}" />
+        </xacro:if>
+        <!-- Re-enable collisions checking for selected links -->
+        <xacro:enable_collisions_for link="${link_fmt.format(link)}" others="${[link_fmt.format(i) for i in enabled]}" />
+    </xacro:macro>
+
+    <!-- Configure ACM -->
+    <xacro:configure_collisions link="0" enabled="${[5,6,7]}" />
+    <xacro:configure_collisions link="1" enabled="${[5,6,7]}" />
+    <xacro:configure_collisions link="2" enabled="${[5,6,7]}" />
+    <xacro:configure_collisions link="3" enabled="${[7]}" />
+    <xacro:configure_collisions link="4" />
+    <xacro:configure_collisions link="5" />
+    <xacro:configure_collisions link="6" />
+    <xacro:configure_collisions link="7" />
+    <xacro:configure_collisions link="8" />
 </robot>
