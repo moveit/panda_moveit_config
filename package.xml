@@ -35,7 +35,7 @@
   <!-- <run_depend>gazebo_ros_control</run_depend> -->
   <!-- This package is referenced in the warehouse launch files, but does not build out of the box at the moment. Commented the dependency until this works. -->
   <!-- <run_depend>warehouse_ros_mongo</run_depend> -->
-  <run_depend>franka_description</run_depend>
+  <run_depend version_gte="0.9.1">franka_description</run_depend>
 
 
 </package>
