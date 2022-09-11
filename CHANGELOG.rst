@@ -2,6 +2,11 @@
 Changelog for package panda_moveit_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.7.8 (2022-09-11)
+------------------
+* Update to franka_description 0.10.0 (`#119 <https://github.com/ros-planning/panda_moveit_config/issues/119>`_)
+* Contributors: Matt Droter, Robert Haschke
+
 0.7.7 (2022-09-01)
 ------------------
 * Thorough rework based on franka_description 0.9.1 (using fine and coarse collision models)
