@@ -1,4 +1,6 @@
 <launch>
+  <!-- Define parameter to label the joints in yaml -->
+  <arg name="arm_id" default="panda" />
 
   <!-- execute the trajectory in 'interpolate' mode or jump to goal position in 'last point' mode -->
   <arg name="fake_execution_type" default="interpolate" />

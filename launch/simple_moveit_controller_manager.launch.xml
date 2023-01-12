@@ -1,4 +1,7 @@
 <launch>
+  <!-- Define parameter to label the joints in yaml -->
+  <arg name="arm_id" default="panda" />
+
   <!-- Define the MoveIt controller manager plugin to use for trajectory execution -->
   <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager" />
 
