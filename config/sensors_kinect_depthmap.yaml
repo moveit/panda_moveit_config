@@ -9,4 +9,3 @@ sensors:
     padding_offset: 0.03
     max_update_rate: 1.0
     filtered_cloud_topic: filtered_cloud
-    ns: kinect

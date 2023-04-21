@@ -1,3 +1,11 @@
+planning_plugin: trajopt_interface/TrajOptPlanner
+request_adapters: >-
+  default_planner_request_adapters/AddTimeOptimalParameterization
+  default_planner_request_adapters/FixWorkspaceBounds
+  default_planner_request_adapters/FixStartStateBounds
+  default_planner_request_adapters/FixStartStateCollision
+  default_planner_request_adapters/FixStartStatePathConstraints
+start_state_max_bounds_error: 0.1
 trajopt_param:
   improve_ratio_threshold: 0.25   # minimum ratio true_improve/approx_improve to accept step. [Research Paper] TrueImprove/ModelImprove > c
   min_trust_box_size: 1e-4        # if trust region gets any smaller, exit and report convergence. [Research Paper] xtol
