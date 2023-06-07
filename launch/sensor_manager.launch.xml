@@ -1,0 +1,4 @@
+<param from="$(find panda_moveit_config)/config/sensors_kinect_pointcloud.yaml" />
+<param name="octomap_frame" value="odom_combined" />
+<param name="octomap_resolution" value="0.05" />
+<param name="max_range" value="5.0" />
