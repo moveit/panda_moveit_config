@@ -1,11 +1,25 @@
 moveit_setup_assistant_config:
-  URDF:
-    package: franka_description
-    relative_path: robots/panda_arm.urdf.xacro
-    xacro_args: hand:=true
-  SRDF:
-    relative_path: config/panda.srdf.xacro
-  CONFIG:
+  urdf:
+    package: moveit_resources_panda_description
+    relative_path: urdf/panda.urdf
+  srdf:
+    relative_path: config/panda.srdf
+  package_settings:
     author_name: MoveIt maintainer team
     author_email: moveit_releasers@googlegroups.com
-    generated_timestamp: 1636310680
+    generated_timestamp: 1686150423
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
