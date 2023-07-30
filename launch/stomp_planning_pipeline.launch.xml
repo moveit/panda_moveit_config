@@ -22,13 +22,15 @@
   <!-- <param name="capabilities" value="" /> -->
 
   <!-- Load parameters for both groups, panda_arm and manipulator -->
-  <group ns="$(arg arm_id)_arm">
-    <rosparam command="load" file="$(find panda_moveit_config)/config/stomp_planning.yaml" />
-    <param name="group_name" value="$(arg arm_id)_arm" />
-  </group>
-  <group ns="manipulator">
-    <rosparam command="load" file="$(find panda_moveit_config)/config/stomp_planning.yaml" />
-    <param name="group_name" value="manipulator" />
+  <group ns="stomp">
+    <group ns="$(arg arm_id)_arm">
+      <rosparam command="load" file="$(find panda_moveit_config)/config/stomp_planning.yaml"/>
+      <param name="group_name" value="$(arg arm_id)_arm"/>
+    </group>
+    <group ns="$(arg arm_id)_manipulator">
+      <rosparam command="load" file="$(find panda_moveit_config)/config/stomp_planning.yaml"/>
+      <param name="group_name" value="$(arg arm_id)_manipulator"/>
+    </group>
   </group>
 
 </launch>
