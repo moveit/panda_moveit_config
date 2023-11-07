@@ -1,14 +1,15 @@
+<?xml version="1.0"?>
 <launch>
-  <!-- specify the planning pipeline -->
-  <arg name="pipeline" default="ompl" />
+  <!-- MoveIt options -->
+  <arg name="pipeline" default="ompl" doc="Planning pipeline to use with MoveIt"/>
 
-  <!-- Panda specific options -->
+  <!-- Panda options -->
   <arg name="load_gripper" default="true" />
   <arg name="transmission" default="effort" />
 
-  <!-- Gazebo specific options -->
-  <arg name="gazebo_gui" default="true" />
-  <arg name="paused" default="false" />
+  <!-- Gazebo options -->
+  <arg name="gazebo_gui" default="true" doc="Start Gazebo GUI"/>
+  <arg name="paused" default="false" doc="Start Gazebo paused"/>
 
   <!-- Launch the gazebo simulator and spawn the robot -->
   <include file="$(find franka_gazebo)/launch/panda.launch" pass_all_args="true">
@@ -17,8 +18,9 @@
     <arg name="controller" default="$(arg transmission)_joint_trajectory_controller" />
   </include>
 
+  <!-- Launch MoveIt -->
   <include file="$(dirname)/demo.launch" pass_all_args="true">
-    <!-- robot description is loaded by gazebo.launch, to enable Gazebo features -->
+    <!-- robot_description is loaded by gazebo.launch, to enable Gazebo features -->
     <arg name="load_robot_description" value="false" />
     <!-- MoveItSimpleControllerManager provides ros_control's JointTrajectory controllers
          as well as GripperCommand actions -->
